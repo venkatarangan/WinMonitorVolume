@@ -25,7 +25,7 @@ Before you start, make sure **DDC/CI** is turned on in your monitor's on-screen 
 
 ### Option 1: Just run it (easiest)
 
-1. From [Releases](../../releases), download **`WinMonitorVolume-<version>-win-x64.zip`** and extract it.
+1. Download **[WinMonitorVolume-1.1.6-win-x64.zip](https://github.com/venkatarangan/WinMonitorVolume/releases/download/v1.1.6/WinMonitorVolume-1.1.6-win-x64.zip)** (or see all [Releases](https://github.com/venkatarangan/WinMonitorVolume/releases/latest)) and extract it.
 2. Double-click **`WinMonitorVolume.exe`**.
 
 That's it — nothing else to install. If Windows shows *"Windows protected your PC"*, click **More info → Run anyway** (the app isn't code-signed).
@@ -44,7 +44,7 @@ It copies the app to `%LOCALAPPDATA%\Programs\WinMonitorVolume`, adds a Start me
 
 ### Option 3: Small download, if you already have .NET
 
-`WinMonitorVolume-<version>-win-x64-needs-dotnet.zip` is under 1 MB but needs the .NET 10 Desktop Runtime:
+[`WinMonitorVolume-1.1.6-win-x64-needs-dotnet.zip`](https://github.com/venkatarangan/WinMonitorVolume/releases/download/v1.1.6/WinMonitorVolume-1.1.6-win-x64-needs-dotnet.zip) is under 1 MB but needs the .NET 10 Desktop Runtime:
 
 ```powershell
 winget install Microsoft.DotNet.DesktopRuntime.10
@@ -72,3 +72,7 @@ Output: `publish\` (small EXE), `publish-standalone\` (standalone EXE) and `dist
 ## Credits
 
 Written by [Mangoidiots.com](https://mangoidiots.com) using Claude AI Opus. Inspired by [MonitorControl](https://github.com/MonitorControl/).
+
+## License
+
+[MIT](LICENSE), the same license as MonitorControl.
