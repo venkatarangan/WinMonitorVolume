@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AssemblyName>WinMonitorVolume</AssemblyName>
+    <RootNamespace>WinMonitorVolume</RootNamespace>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <Product>WinMonitorVolume</Product>
+    <Company>Mangoidiots.com</Company>
+    <Description>Controls a monitor's built-in speaker volume over DDC/CI</Description>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+
+    <!-- Version is Major.Minor.Build; Build comes from build-number.txt and goes up by one on every Release build. -->
+    <VersionMajorMinor>1.1</VersionMajorMinor>
+    <BuildNumberFile>$(MSBuildProjectDirectory)\build-number.txt</BuildNumberFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="app.ico" LogicalName="app.ico" />
+  </ItemGroup>
+
+  <!-- build.ps1 passes -p:BuildNumber=N so both EXEs from one run share a version; otherwise bump here. -->
+  <Target Name="SetBuildVersion" BeforeTargets="BeforeBuild;GetAssemblyVersion;GenerateAssemblyInfo">
+    <PropertyGroup>
+      <_BumpBuildNumber Condition="'$(BuildNumber)' == '' and '$(Configuration)' == 'Release'">true</_BumpBuildNumber>
+    </PropertyGroup>
+    <ReadLinesFromFile File="$(BuildNumberFile)" Condition="'$(BuildNumber)' == '' and Exists('$(BuildNumberFile)')">
+      <Output TaskParameter="Lines" PropertyName="_LastBuildNumber" />
+    </ReadLinesFromFile>
+    <PropertyGroup Condition="'$(BuildNumber)' == ''">
+      <_LastBuildNumber Condition="'$(_LastBuildNumber)' == ''">0</_LastBuildNumber>
+      <BuildNumber Condition="'$(_BumpBuildNumber)' == 'true'">$([MSBuild]::Add($(_LastBuildNumber), 1))</BuildNumber>
+      <BuildNumber Condition="'$(_BumpBuildNumber)' != 'true'">$(_LastBuildNumber)</BuildNumber>
+    </PropertyGroup>
+    <PropertyGroup>
+      <Version>$(VersionMajorMinor).$(BuildNumber)</Version>
+      <AssemblyVersion>$(Version).0</AssemblyVersion>
+      <FileVersion>$(Version).0</FileVersion>
+      <InformationalVersion>$(Version)</InformationalVersion>
+    </PropertyGroup>
+    <WriteLinesToFile Condition="'$(_BumpBuildNumber)' == 'true'" File="$(BuildNumberFile)" Lines="$(BuildNumber)" Overwrite="true" />
+  </Target>
+
+</Project>
