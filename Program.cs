@@ -24,6 +24,15 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
+        // Microsoft Store build: Windows starts the app at sign-in through the manifest's StartupTask, without
+        // command-line arguments, so apply the mode saved by the app.
+        if (args.Length == 0 && Startup.IsPackaged && Startup.LaunchedByStartupTask())
+        {
+            var (mode, savedPercent) = Startup.Read();
+            if (mode == StartupMode.SetVolume) return SetVolumeAndExit(savedPercent);
+            if (mode == StartupMode.Tray) args = new[] { "--tray" };
+        }
+
         if (args.Length > 0 && args[0].Equals("--max", StringComparison.OrdinalIgnoreCase))
             return SetVolumeAndExit(100);
         if (args.Length > 0 && args[0].Equals("--set", StringComparison.OrdinalIgnoreCase))

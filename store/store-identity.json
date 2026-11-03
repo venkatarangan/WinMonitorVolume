@@ -1,0 +1,7 @@
+{
+  "_comment": "Microsoft Store product identity from Partner Center > WinMonitorVolume > Product management > Product identity. These values are public: they are written into every MSIX package. build-msix.ps1 uses them by default.",
+  "IdentityName": "LittleFeetServicesPvtLtd.WinMonitorVolume",
+  "Publisher": "CN=8E78CF52-9CFA-4785-91A8-CAE433507644",
+  "PublisherDisplayName": "Little Feet Services Pvt Ltd",
+  "DisplayName": "WinMonitorVolume"
+}
