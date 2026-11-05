@@ -50,13 +50,14 @@ Ignored by git: `bin/`, `obj/`, `publish/`, `publish-standalone/`, `publish-msix
   - `publish\WinMonitorVolume.exe`: about 0.2 MB, needs the .NET 10 Desktop Runtime.
   - `publish-standalone\WinMonitorVolume.exe`: about 49 MB, self-contained with .NET built in and compressed. Runs with nothing installed.
   - `dist\WinMonitorVolume-<ver>-win-x64.zip` (standalone) and `dist\WinMonitorVolume-<ver>-win-x64-needs-dotnet.zip` (small). Each contains the EXE, `README.md` and `Install.ps1`.
-- **Version** is `1.1.<build>`. A Release build without `-p:BuildNumber` bumps `build-number.txt` by itself. `build.ps1` bumps it once and passes `-p:BuildNumber`, so both EXEs share a version. The last zip release is **1.1.6**. The build number is now **8**: build 7 was a local zip build, and **1.1.8.0** is the first Microsoft Store package. MSIX versions are `1.1.<build>.0`. To start a new minor version, change `VersionMajorMinor` in the csproj.
+- **Version** is `1.1.<build>`. A Release build without `-p:BuildNumber` bumps `build-number.txt` by itself. `build.ps1` bumps it once and passes `-p:BuildNumber`, so both EXEs share a version. The last zip release on GitHub is **1.1.6** (older than the Store's 1.1.8.0). The build number is now **8**: build 7 was a local zip build, and **1.1.8.0** is the first Microsoft Store package. MSIX versions are `1.1.<build>.0`. To start a new minor version, change `VersionMajorMinor` in the csproj.
 - WinForms doesn't support trimming, so the standalone EXE stays around 49 MB.
 - After renaming or copying the folder, delete `bin/` and `obj/` before the first build. They cache absolute paths.
 
 ## Microsoft Store
 
-- **Status:** 1.1.8.0 was submitted on 3 November 2026 and is waiting for certification. Add the Store link to the README once it is approved.
+- **Status:** 1.1.8.0 was submitted on 3 November 2026, **approved and live** in the Store: https://apps.microsoft.com/detail/9pc4vlxpk5sw?hl=en-US&gl=IN. The owner installed it and confirmed it works, with no difference from the zip build. The README links to it and calls it the recommended way to run the app.
+- **Running without the Store:** the zip and local builds are unsigned, so SmartScreen warns and Smart App Control blocks them. The README's "For developers" section lists the workarounds (Run anyway, Unblock-File, turning SmartScreen or Smart App Control off, or building locally).
 - **Why:** on Windows 11, SmartScreen warns about the unsigned zip build and Smart App Control blocks it outright. The Store build is signed by Microsoft and runs without warnings.
 - **Identity:** saved in `store/store-identity.json` (publisher: Little Feet Services Pvt Ltd). `build-msix.ps1` reads it, so there's no need to ask for the values again.
 - **Release an update:** run `.\store\build-msix.ps1` on Windows (needs the Windows SDK), then upload `dist\WinMonitorVolume_<ver>_x64.msix` unsigned in a new Partner Center submission. Details and the full submission record are in `store/STORE-SUBMISSION.md`.

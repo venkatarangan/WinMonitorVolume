@@ -1,6 +1,6 @@
 # Publishing WinMonitorVolume to the Microsoft Store
 
-**Status:** version 1.1.8.0 was submitted to the Microsoft Store on 3 November 2026 and is waiting for certification.
+**Status:** version 1.1.8.0 was submitted on 3 November 2026 and has been **approved and published**: <https://apps.microsoft.com/detail/9pc4vlxpk5sw?hl=en-US&gl=IN>. It was installed from the Store and works the same as the zip build. The GitHub zip release (1.1.6) is older than the Store version.
 
 ## Why the Store
 

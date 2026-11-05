@@ -25,25 +25,36 @@ Before you start, make sure **DDC/CI** is turned on in your monitor's on-screen 
 
 ### Microsoft Store (recommended)
 
-WinMonitorVolume has been submitted to the **Microsoft Store** and is waiting for Microsoft's certification. A link will appear here once it is approved. The Store version is signed by Microsoft, installs with one click, starts without any warnings and updates itself.
+**[Get WinMonitorVolume from the Microsoft Store](https://apps.microsoft.com/detail/9pc4vlxpk5sw?hl=en-US&gl=IN)**
+
+This is the recommended way to run the app. The Store version is signed by Microsoft, installs with one click, starts without any warnings and updates itself. It behaves exactly like the zip builds; there is no difference in features.
 
 #### Why the Microsoft Store?
 
-On Windows 11 an unsigned app downloaded from the internet often doesn't get a chance to run:
+On Windows 11 an unsigned app downloaded from the internet is often stopped before it runs:
 
 - **Microsoft Defender SmartScreen** shows *"Windows protected your PC"* and hides the way forward behind **More info → Run anyway**.
 - **Smart App Control**, which is turned on for many new Windows 11 PCs, blocks unsigned apps outright, with no "Run anyway" option.
 
-A code-signing certificate costs money every year, and a new one still triggers SmartScreen until it builds up reputation. Publishing through the Microsoft Store gets the app signed by Microsoft, so it runs on any Windows 11 PC without warnings.
+A code-signing certificate costs money every year, and a new one still triggers SmartScreen until it builds up reputation. Publishing through the Microsoft Store gets the app signed by Microsoft, so it runs on any Windows 11 PC without warnings. **Running the zip build instead will usually trigger SmartScreen** (see below).
 
-The zip downloads below are still available. Use them if you don't want to use the Store, or if your PC doesn't block them.
+### For developers: running the EXE without the Store
 
-### Option 1: Just run it (easiest)
+The zip downloads and a local build are **not code-signed**, so SmartScreen and Smart App Control may stop them. Use these only if you can't or don't want to use the Store. The zip releases (currently **1.1.6**) are older than the Store version (**1.1.8**).
+
+To run an unsigned EXE, do one of the following:
+
+- **SmartScreen warning ("Windows protected your PC"):** click **More info → Run anyway**. To avoid the prompt for a downloaded file, right-click the zip (or the EXE) → **Properties** → tick **Unblock** → OK, or run `Unblock-File .\WinMonitorVolume.exe` in PowerShell. `Install.ps1` does this for you.
+- **SmartScreen turned off:** in **Windows Security → App & browser control → Reputation-based protection**, turn off **Check apps and files**. Turn it back on when you're done.
+- **Smart App Control blocks it completely:** there is no "Run anyway". Turn it off in **Windows Security → App & browser control → Smart App Control settings**. Windows only lets you turn it back on by resetting the PC, so prefer the Store version if that matters to you.
+- **Build it yourself:** an EXE you build locally (see [Build](#build)) carries no "downloaded from the internet" mark, so SmartScreen doesn't check it. Smart App Control may still block an unsigned local build.
+
+Only turn these protections off on a machine you control, and only for software you trust.
+
+### Option 1: Just run the zip
 
 1. Download **[WinMonitorVolume-1.1.6-win-x64.zip](https://github.com/venkatarangan/WinMonitorVolume/releases/download/v1.1.6/WinMonitorVolume-1.1.6-win-x64.zip)** (or see all [Releases](https://github.com/venkatarangan/WinMonitorVolume/releases/latest)) and extract it.
-2. Double-click **`WinMonitorVolume.exe`**.
-
-That's it — nothing else to install. If Windows shows *"Windows protected your PC"*, click **More info → Run anyway** (the zip build isn't code-signed). If Smart App Control blocks it completely, use the Microsoft Store version instead.
+2. Double-click **`WinMonitorVolume.exe`**, using one of the steps above if Windows stops it.
 
 If you plan to use the start-with-Windows options, keep the EXE in a permanent folder first, or use Option 2.
 
