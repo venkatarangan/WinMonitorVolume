@@ -17,7 +17,7 @@ Talks to the monitor over **DDC/CI** (the same way MonitorControl does) and sets
 - At sign-in, either start in the tray, or just set the volume (0%, 50% or 100%) and exit with no window
 - Command line: `WinMonitorVolume.exe --max`, `--set 50`, or `--tray`
 
-Tested on Windows 11 with an LG monitor connected over USB-C. Other monitors that support DDC/CI volume should work too.
+Tested on Windows 11 with two LG monitors: the LG 34WQ75C-B (34 inch curved) and the LG 32U720A-B. Other monitors that support DDC/CI volume should work too.
 
 ## Install
 
