@@ -4,7 +4,7 @@ Notes for picking this project up in a new Claude Code session, on any PC. Point
 
 ## What this is
 
-A small Windows 11 desktop app (C# WinForms, .NET 10) that sets an external monitor's **built-in speaker volume** over **DDC/CI**, so the owner doesn't have to turn the monitor's physical knob. It's the Windows equivalent of the macOS app MonitorControl. It was built for the LG 32U720A-B (connected by USB-C) and tested on that monitor and on an LG 34WQ75C-B (34 inch curved). Windows' own volume only works inside the limit set on the monitor; this app changes that limit.
+A small Windows 11 desktop app (C# WinForms, .NET 10) that sets an external monitor's **built-in speaker volume** over **DDC/CI**, so the owner doesn't have to turn the monitor's physical knob. It's the Windows equivalent of the macOS app MonitorControl. It was built for the LG 32U720A-B (connected by USB-C) and tested on that monitor and on an LG 34WQ75C-B (34 inch curved, over DisplayPort). Windows' own volume only works inside the limit set on the monitor; this app changes that limit.
 
 The project folder was originally named `lgmonitor` and has since been renamed to `WinMonitorVolume`. Nothing in the code or scripts depends on the folder name.
 
@@ -68,7 +68,7 @@ Ignored by git: `bin/`, `obj/`, `publish/`, `publish-standalone/`, `publish-msix
 
 ## Tested so far
 
-- Reading and setting volume on two LG monitors: the 32U720A-B (over USB-C) and the 34WQ75C-B (34 inch curved); the owner confirmed it works on both.
+- Reading and setting volume on two LG monitors: the 32U720A-B (over USB-C) and the 34WQ75C-B (34 inch curved, over DisplayPort); the owner confirmed it works on both.
 - `--max` exits with code 0. `--tray` starts hidden. A second launch brings up the tray copy's window.
 - The standalone EXE loads nothing from an installed .NET.
 - `Install.ps1` from an extracted release zip, run with PowerShell 5.1: files copied, shortcut created, startup entry repointed, app launched.
@@ -80,6 +80,7 @@ Ignored by git: `bin/`, `obj/`, `publish/`, `publish-standalone/`, `publish-msix
 - Every tray menu item, clicked by hand.
 - `Install.ps1 -Uninstall`.
 - The standalone EXE on a PC that has no .NET at all.
+- **Future to-do (no rebuild just for this):** the About dialog text in `AboutForm.cs` line 42 still says "Tested on Windows 11 with an LG monitor connected by a USB-C cable." It should say two LG monitors, the 32U720A-B over USB-C and the 34WQ75C-B over DisplayPort. Fix it in the next release build, together with whatever else changes then.
 - Windows on ARM (the x64 EXE should run under emulation). A `win-arm64` build could be added to `build.ps1`.
 - Possible future work:
   - A global hotkey.
